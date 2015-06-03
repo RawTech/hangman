@@ -1,2 +1,5 @@
-website:
-    resource: "@AppBundle/Resources/config/routing.yml"
+api:
+    resource: "@AppBundle/Controller/ApiController.php"
+    prefix:   /api
+    type:     annotation
+    schemes:  [https]
