@@ -1,0 +1,7 @@
+<phpunit bootstrap="vendor/autoload.php">
+    <testsuites>
+        <testsuite name="hangman">
+            <directory>src\AppBundle\Tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

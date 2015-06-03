@@ -3,7 +3,6 @@
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Api controller.
@@ -11,11 +10,38 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class ApiController extends Controller
 {
     /**
-     * @Route("/status", name="status")
+     * @Route("/")
+     * @Method({"GET"})
+     */
+    public function root()
+    {
+        return $this->redirectToRoute('apiStatus');
+    }
+
+    /**
+     * @Route("/status", name="apiStatus")
      * @Method({"GET"})
      */
     public function status()
     {
-        return new JsonResponse(['code' => 200]);
+        return $this->get('rawtech.hangman.handler.status')->getResponse();
+    }
+
+    /**
+     * @Route("/new", name="apiNew")
+     * @Method({"GET"})
+     */
+    public function newGame()
+    {
+        return $this->get('rawtech.hangman.handler.new')->createNewGame()->getResponse();
+    }
+
+    /**
+     * @Route("/guess/{letter}", name="apiGuess")
+     * @Method({"GET"})
+     */
+    public function guess($letter)
+    {
+        return $this->get('rawtech.hangman.handler.guess')->guess($letter)->getResponse();
     }
 }

@@ -1,1 +1,26 @@
 services:
+    rawtech.hangman.game_state:
+        class: AppBundle\Model\Api\GameState
+        arguments:
+        - @session
+
+    rawtech.hangman.guess_validator:
+        class: AppBundle\Model\Api\Validators\GuessValidator
+        arguments:
+        - @rawtech.hangman.game_state
+
+    rawtech.hangman.handler.status:
+        class: AppBundle\Model\Api\Handler\HangmanStatusHandler
+        arguments:
+        - @rawtech.hangman.game_state
+
+    rawtech.hangman.handler.new:
+        class: AppBundle\Model\Api\Handler\HangmanNewHandler
+        arguments:
+        - @rawtech.hangman.game_state
+
+    rawtech.hangman.handler.guess:
+        class: AppBundle\Model\Api\Handler\HangmanGuessHandler
+        arguments:
+        - @rawtech.hangman.game_state
+        - @rawtech.hangman.guess_validator
