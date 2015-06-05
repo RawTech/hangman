@@ -84,8 +84,8 @@ class GuessValidatorTest extends \PHPUnit_Framework_TestCase
     {
         $gameState = $this->getMockGameState();
         $gameState->expects($this->once())->method('hasGuessed')->will($this->returnValue(false));
-        $gameState->expects($this->once())->method('getGuesses')->will($this->returnValue([1,2,3,4]));
-        $gameState->expects($this->once())->method('getMaxGuesses')->will($this->returnValue(4));
+        $gameState->expects($this->once())->method('getWrongGuesses')->will($this->returnValue([1,2,3,4]));
+        $gameState->expects($this->once())->method('getMaxMistakes')->will($this->returnValue(4));
         $this->setup($gameState);
 
         $this->setExpectedException(
@@ -101,8 +101,8 @@ class GuessValidatorTest extends \PHPUnit_Framework_TestCase
     {
         $gameState = $this->getMockGameState();
         $gameState->expects($this->once())->method('hasGuessed')->will($this->returnValue(false));
-        $gameState->expects($this->once())->method('getGuesses')->will($this->returnValue([1,2,3,4]));
-        $gameState->expects($this->once())->method('getMaxGuesses')->will($this->returnValue(5));
+        $gameState->expects($this->once())->method('getWrongGuesses')->will($this->returnValue([1,2,3,4]));
+        $gameState->expects($this->once())->method('getMaxMistakes')->will($this->returnValue(5));
         $this->setup($gameState);
 
         $this->guessValidator->setLetter('a');

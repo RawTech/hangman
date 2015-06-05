@@ -4,9 +4,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-/**
- * Api controller.
- */
+/** Api controller. */
 class ApiController extends Controller
 {
     /**

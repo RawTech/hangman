@@ -1,0 +1,36 @@
+.btn-board-tile,
+.btn-board-key
+{
+    text-transform: uppercase;
+    padding: 0;
+}
+
+.btn-board-tile
+{
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    margin-left: 1px;
+}
+
+.btn-board-key
+{
+    width: 54px;
+    font-size: 2em;
+}
+
+.hidden
+{
+    display: none;
+}
+
+.game-board .tiles
+{
+    padding: 10px;
+    min-height: 46px;
+}
+
+body
+{
+    background-color: #F6F4F1;
+}

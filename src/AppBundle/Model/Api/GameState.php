@@ -20,14 +20,15 @@ class GameState
     {
         $this->session->remove('word');
         $this->session->remove('guesses');
-        $this->session->remove('maxGuesses');
+        $this->session->remove('wrongGuesses');
+        $this->session->remove('maxMistakes');
     }
 
     /**
      * @param string|null $word
-     * @param integer     $maxGuesses
+     * @param integer     $maxMistakes
      */
-    public function newGame($word = null, $maxGuesses = 10)
+    public function newGame($word = null, $maxMistakes = 6)
     {
         if ($word === null) {
             $word = Words::random();
@@ -35,7 +36,8 @@ class GameState
 
         $this->session->set('word', $word);
         $this->session->set('guesses', []);
-        $this->session->set('maxGuesses', $maxGuesses);
+        $this->session->set('wrongGuesses', []);
+        $this->session->set('maxMistakes', $maxMistakes);
     }
 
     /** @return string */
@@ -50,10 +52,16 @@ class GameState
         return $this->session->get('guesses');
     }
 
-    /** @return integer */
-    public function getMaxGuesses()
+    /** @return array */
+    public function getWrongGuesses()
     {
-        return $this->session->get('maxGuesses');
+        return $this->session->get('wrongGuesses');
+    }
+
+    /** @return integer */
+    public function getMaxMistakes()
+    {
+        return $this->session->get('maxMistakes');
     }
 
     /**
@@ -67,6 +75,13 @@ class GameState
         $guesses[] = $letter;
 
         $this->session->set('guesses', $guesses);
+
+        if (!$this->wordContains($letter)) {
+            $wrongGuesses = $this->getWrongGuesses();
+            $wrongGuesses[] = $letter;
+
+            $this->session->set('wrongGuesses', $wrongGuesses);
+        }
 
         return $guesses;
     }
@@ -100,5 +115,15 @@ class GameState
         }
 
         return $board;
+    }
+
+    /**
+     * @param string $letter
+     *
+     * @return boolean
+     */
+    public function wordContains($letter)
+    {
+        return strpos($this->getWord(), $letter) !== false;
     }
 }

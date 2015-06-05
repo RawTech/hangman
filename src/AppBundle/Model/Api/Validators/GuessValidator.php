@@ -31,7 +31,7 @@ class GuessValidator implements ValidatorInterface
             throw new \InvalidArgumentException('Guess is invalid, (a-z) only!');
         } elseif ($this->state->hasGuessed($this->letter)) {
             throw new \InvalidArgumentException(sprintf("You've already guessed %s!", $this->letter));
-        } elseif (count($this->state->getGuesses()) + 1 > $this->state->getMaxGuesses()) {
+        } elseif (count($this->state->getWrongGuesses()) + 1 > $this->state->getMaxMistakes()) {
             throw new \OverflowException('No more guesses!');
         }
     }

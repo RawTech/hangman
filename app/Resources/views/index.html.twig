@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hangman</title>
+    <link type="text/css" rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css"
+          media="screen,projection"/>
+    {% stylesheets '../app/Resources/public/css/*' %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+    {% endstylesheets %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+
+<body>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <h1 class="header center blue-grey-text">Hangman</h1>
+    </div>
+</div>
+
+<div class="row new-game{% if not showNewGame %} hidden{% endif %}">
+    <div class="col s12 m6 offset-m3 center">
+        <a id="new-game-button" class="btn-large waves-effect waves-light">New Game</a>
+    </div>
+</div>
+
+<div class="row game-board{% if showNewGame %} hidden{% endif %}">
+    <div class="col s6 offset-s3 m2 offset-m5">
+        <div class="card white darken-1">
+            <div class="card-content center">
+                <img id="hangman" src="{{ asset('img/0.gif') }}" alt="hangman"/>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m8 offset-m2">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text center tiles"></div>
+        </div>
+    </div>
+    <div class="col s12 m6 offset-m3">
+        {% for row in keys %}
+            <div class="row center">
+                {% for key in row %}
+                    <a class="waves-effect waves-light btn-large btn-board-key" data-char="{{ key }}">{{ key }}</a>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col s12 m6 offset-m3 center">
+        <a id="start-over-button" class="btn-large waves-effect waves-light">Start Over</a>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+{% javascripts '../app/Resources/public/js/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
+</html>

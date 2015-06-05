@@ -26,13 +26,14 @@ abstract class AbstractHangmanHandler
             [
                 'code' => $this->statusCode,
                 'guesses' => $this->state->getGuesses(),
-                'maxGuesses' => $this->state->getMaxGuesses(),
+                'wrongGuesses' => $this->state->getWrongGuesses(),
+                'maxMistakes' => $this->state->getMaxMistakes(),
                 'board' => $this->state->getBoard(),
             ],
             $this->getAdditionalResponseData()
         );
 
-        return new JsonResponse($response, $this->statusCode);
+        return new JsonResponse($response);
     }
 
     /**

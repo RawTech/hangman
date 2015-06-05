@@ -3,3 +3,8 @@ api:
     prefix:   /api
     type:     annotation
     schemes:  [https]
+
+hangman:
+    resource: "@AppBundle/Controller/HangmanController.php"
+    type:     annotation
+    schemes:  [https]

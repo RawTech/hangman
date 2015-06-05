@@ -59,7 +59,8 @@ class HangmanGuessHandlerTest extends \PHPUnit_Framework_TestCase
 
         $gameState = $this->getMockGameState();
         $gameState->expects($this->once())->method('getGuesses')->will($this->returnValue(['a','b']));
-        $gameState->expects($this->once())->method('getMaxGuesses')->will($this->returnValue(5));
+        $gameState->expects($this->once())->method('getWrongGuesses')->will($this->returnValue([]));
+        $gameState->expects($this->once())->method('getMaxMistakes')->will($this->returnValue(5));
         $gameState->expects($this->once())->method('getBoard')->will($this->returnValue(['a','_', '_']));
 
         $this->setup($gameState, $validator);
@@ -71,7 +72,7 @@ class HangmanGuessHandlerTest extends \PHPUnit_Framework_TestCase
         $response = $this->handler->getResponse();
 
         $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame('{"code":200,"guesses":["a","b"],"maxGuesses":5,"board":["a","_","_"],"message":"You guessed a"}', $response->getContent());
+        $this->assertSame('{"code":200,"guesses":["a","b"],"wrongGuesses":[],"maxMistakes":5,"board":["a","_","_"],"message":"You guessed a"}', $response->getContent());
     }
 
     public function testInvalidArgument()
@@ -82,7 +83,8 @@ class HangmanGuessHandlerTest extends \PHPUnit_Framework_TestCase
 
         $gameState = $this->getMockGameState();
         $gameState->expects($this->once())->method('getGuesses')->will($this->returnValue(['a','b']));
-        $gameState->expects($this->once())->method('getMaxGuesses')->will($this->returnValue(5));
+        $gameState->expects($this->once())->method('getWrongGuesses')->will($this->returnValue([]));
+        $gameState->expects($this->once())->method('getMaxMistakes')->will($this->returnValue(5));
         $gameState->expects($this->once())->method('getBoard')->will($this->returnValue(['a','_', '_']));
 
         $this->setup($gameState, $validator);
@@ -93,8 +95,8 @@ class HangmanGuessHandlerTest extends \PHPUnit_Framework_TestCase
 
         $response = $this->handler->getResponse();
 
-        $this->assertSame(400, $response->getStatusCode());
-        $this->assertSame('{"code":400,"guesses":["a","b"],"maxGuesses":5,"board":["a","_","_"],"message":"Argument not valid."}', $response->getContent());
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame('{"code":400,"guesses":["a","b"],"wrongGuesses":[],"maxMistakes":5,"board":["a","_","_"],"message":"Argument not valid."}', $response->getContent());
     }
 
     public function testTooManyGuesses()
@@ -105,7 +107,8 @@ class HangmanGuessHandlerTest extends \PHPUnit_Framework_TestCase
 
         $gameState = $this->getMockGameState();
         $gameState->expects($this->once())->method('getGuesses')->will($this->returnValue(['a','b']));
-        $gameState->expects($this->once())->method('getMaxGuesses')->will($this->returnValue(5));
+        $gameState->expects($this->once())->method('getWrongGuesses')->will($this->returnValue([]));
+        $gameState->expects($this->once())->method('getMaxMistakes')->will($this->returnValue(5));
         $gameState->expects($this->once())->method('getBoard')->will($this->returnValue(['a','_', '_']));
 
         $this->setup($gameState, $validator);
@@ -116,7 +119,7 @@ class HangmanGuessHandlerTest extends \PHPUnit_Framework_TestCase
 
         $response = $this->handler->getResponse();
 
-        $this->assertSame(413, $response->getStatusCode());
-        $this->assertSame('{"code":413,"guesses":["a","b"],"maxGuesses":5,"board":["a","_","_"],"message":"Too many guesses."}', $response->getContent());
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame('{"code":413,"guesses":["a","b"],"wrongGuesses":[],"maxMistakes":5,"board":["a","_","_"],"message":"Too many guesses."}', $response->getContent());
     }
 }

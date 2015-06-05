@@ -102,7 +102,7 @@ class GameStateTest extends \PHPUnit_Framework_TestCase
     {
         $this->gameState->newGame('aword', 20);
 
-        $this->assertSame(20, $this->gameState->getMaxGuesses());
+        $this->assertSame(20, $this->gameState->getMaxMistakes());
     }
 
     public function testWord()
@@ -110,5 +110,23 @@ class GameStateTest extends \PHPUnit_Framework_TestCase
         $this->gameState->newGame('aword', 20);
 
         $this->assertSame('aword', $this->gameState->getWord());
+    }
+
+    public function testWordContains()
+    {
+        $this->gameState->newGame('aword', 20);
+
+        $this->assertTrue($this->gameState->wordContains('a'));
+        $this->assertFalse($this->gameState->wordContains('z'));
+    }
+
+    public function testWrongGuess()
+    {
+        $this->gameState->newGame('aword', 20);
+        $this->gameState->addGuess('b');
+        $this->gameState->addGuess('a');
+
+        $this->assertSame(['b'], $this->gameState->getWrongGuesses());
+        $this->assertSame(['b', 'a'], $this->gameState->getGuesses());
     }
 }
