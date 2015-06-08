@@ -34,3 +34,21 @@ body
 {
     background-color: #F6F4F1;
 }
+
+.modal-content h4 small
+{
+    font-size: 50%;
+}
+
+#win-restart-button
+{
+    position: absolute;
+    right: 25px;
+    top: 60px;
+}
+
+#loose-restart-button
+{
+    position: absolute;
+    right: 25px;
+}

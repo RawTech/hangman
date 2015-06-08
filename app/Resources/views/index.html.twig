@@ -53,6 +53,56 @@
     </div>
 </div>
 
+<div id="win" class="modal bottom-sheet" style="display: block; opacity: 0; bottom: -100%;">
+    <div class="modal-content">
+        <a id="win-restart-button" class="waves-effect waves-light btn">Restart</a>
+        <h4>You Win.. <small>absolutely nothing!</small></h4>
+        <h6>But here are some links to cool stuff:</h6>
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <img src="{{ asset('img/phpstorm-logo.gif') }}" alt="PhpStorm Logo" class="circle">
+                <span class="title">PhpStorm</span>
+                <p>Probably the PHP best IDE<br>
+                    <a href="https://www.jetbrains.com/phpstorm" target="_blank">https://www.jetbrains.com/phpstorm</a>
+                </p>
+            </li>
+            <li class="collection-item avatar">
+                <img src="{{ asset('img/reddit-logo.png') }}" alt="Reddit Logo" class="circle">
+                <span class="title">/r/php</span>
+                <p>Interesting stuff about PHP from people across the world.<br>
+                    <a href="https://www.reddit.com/r/php" target="_blank">https://www.reddit.com/r/php</a>
+                </p>
+            </li>
+            <li class="collection-item avatar">
+                <img src="{{ asset('img/materialize-logo.png') }}" alt="Materialize Logo" class="circle">
+                <span class="title">Materialize</span>
+                <p>A frontend framework for creating awesome looking websites.<br>
+                    <a href="http://materializecss.com" target="_blank">http://materializecss.com</a>
+                </p>
+            </li>
+            <li class="collection-item avatar">
+                <img src="{{ asset('img/atari-logo.png') }}" alt="Atari Logo" class="circle">
+                <span class="title">Atari Breakout</span>
+                <p>Because retro video games are cool right?<br>
+                    <a href="https://www.google.co.uk/search?q=atari+breakout&source=lnms&tbm=isch&sa=X&ei=nO11VcGsBaSc7gaX2oLACA&ved=0CAcQ_AUoAQ&biw=1920&bih=1019" target="_blank">https://www.google.co.uk/search?q=atari+breakout</a>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="loose" class="modal bottom-sheet" style="display: block; opacity: 0; bottom: -100%;">
+    <div class="modal-content">
+        <a id="loose-restart-button" class="waves-effect waves-light btn">Play Again</a>
+        <h4>You Loose..</h4>
+        <ul class="collection">
+            <li class="collection-item">
+                <p>Your guesses should be more educated guess next time!</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
 {% javascripts '../app/Resources/public/js/*' %}

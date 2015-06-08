@@ -25,7 +25,8 @@ $(document).ready(function(){
         $.get('./api/guess/' + char, guessCallback);
     });
 
-    $('#new-game-button, #start-over-button').click(function(){
+    $('#new-game-button, #start-over-button, #win-restart-button, #loose-restart-button').click(function(){
+        $('.modal').closeModal();
         $.get('./api/new', function(response){
             $('div.new-game').addClass('hidden');
             $('div.game-board').removeClass('hidden');
@@ -38,6 +39,7 @@ $(document).ready(function(){
     });
 
     function gameOver() {
+        $('#loose').openModal({dismissible: false});
         $('a.btn-board-key').addClass('disabled');
     }
 
@@ -69,6 +71,18 @@ $(document).ready(function(){
 
         if (response.wrongGuesses.length >= response.maxMistakes) {
             gameOver();
+        } else {
+            var win = true;
+
+            $.each(response.board, function(key, value){
+                if ($.inArray(value, response.guesses) == -1) {
+                    win = false;
+                }
+            });
+
+            if (win) {
+                $('#win').openModal({dismissible: false});
+            }
         }
     }
 
