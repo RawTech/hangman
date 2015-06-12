@@ -25,7 +25,7 @@ $(document).ready(function(){
         $.get('./api/guess/' + char, guessCallback);
     });
 
-    $('#new-game-button, #start-over-button, #win-restart-button, #loose-restart-button').click(function(){
+    $('#new-game-button, #start-over-button, #win-restart-button, #lose-restart-button').click(function(){
         $('.modal').closeModal();
         $.get('./api/new', function(response){
             $('div.new-game').addClass('hidden');
@@ -39,7 +39,7 @@ $(document).ready(function(){
     });
 
     function gameOver() {
-        $('#loose').openModal({dismissible: false});
+        $('#lose').openModal({dismissible: false});
         $('a.btn-board-key').addClass('disabled');
     }
 
